@@ -1,0 +1,88 @@
+%!TeX spellcheck = ru_RU
+\documentclass[fleqn,11pt]{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm,xpatch}
+\usepackage{mathtools}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T2A,T1]{fontenc}
+\usepackage[main=russian,english]{babel}
+
+\usepackage{placeins}
+\usepackage{csquotes}
+\usepackage[backend=biber,hyperref=true,backref=true]{biblatex}
+\usepackage[unicode]{hyperref}
+\addbibresource{../../Common/Bibliography.bib}
+
+%%\usepackage{showframe}
+\usepackage{layout}
+\oddsidemargin = 10pt
+\marginparwidth = 10pt
+\textwidth = 450pt
+\textheight = 592pt
+\voffset = -20pt
+\setlength{\parindent}{0pt}
+\everymath{\displaystyle}
+
+\newcommand{\exwidth}{0.80\textwidth}
+
+\newcommand{\RNum}[1]{\uppercase\expandafter{\romannumeral #1\relax}}
+\newcommand{\MRN}[1]{\text{\RNum{#1}}}
+\newcommand{\NOT}[1]{\overline{#1}}
+\newcommand{\DNOT}[1]{\overline{\overline{#1}}}
+
+%% Get rid of period in thm environment.
+\makeatletter
+\xpatchcmd{\@thm}{.}{}{}{}
+\makeatother
+
+\theoremstyle{definition}
+\newtheorem{definition}{Определение}
+\newtheorem{proposition}{Утверждение}
+
+\newenvironment{myproof}[1][\proofname]{%
+  \proof[\rm \bf #1]%
+}{\endproof}
+
+\newenvironment{tightenum}{
+\begin{enumerate}
+  \setlength{\itemsep}{1pt}
+  \setlength{\parskip}{0pt}
+  \setlength{\parsep}{0pt}}{\end{enumerate}
+}
+
+\begin{document}
+\title{Комбинаторика: заметки}
+\author{Дуглас Вильямович Сервис}
+\date{Февраль 2020}
+\maketitle
+
+\section{Введение}
+
+\begin{definition}[Множество всех подмножеств] ~\\
+  Для дюбого множество $M$ существует множество $P(M)$ всех подмножеств $M$:
+  \begin{align*}
+    x \in P(V) \iff x \subseteq M
+  \end{align*}
+\end{definition}
+
+\begin{myproof} ~\\
+  Для каждого натурального число $k$ из $0$ до $n$, то есть $k \in \{0, 1, 2, \ldots ,n\}$
+\end{myproof}
+
+\begin{proposition} ~\\
+  Пусть $M$ конечное множество, которое содержит $n$ элементов. Следует что $P(M)$
+  содержит $2^n$ элементов.
+\end{proposition}
+
+
+\printbibliography
+
+\clearpage
+
+\section{Добавление}
+
+
+\end{document}

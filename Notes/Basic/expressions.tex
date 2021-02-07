@@ -1,0 +1,143 @@
+%!TeX spellcheck = ru_RU
+\documentclass[fleqn,11pt]{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{mathtools}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T2A,T1]{fontenc}
+\usepackage[main=russian,english]{babel}
+
+\usepackage{csquotes}
+\usepackage{enumitem}
+\usepackage[unicode]{hyperref}
+\usepackage[backend=biber,hyperref=true,backref=true]{biblatex}
+\addbibresource{../../Common/Bibliography.bib}
+
+\usepackage{placeins}
+%%\usepackage{showframe}
+\usepackage{layout}
+\oddsidemargin = 10pt
+\marginparwidth = 10pt
+\textwidth = 450pt
+\textheight = 592pt
+\voffset = -20pt
+
+\setlength{\parindent}{0pt}
+
+\newcommand{\RNum}[1]{\uppercase\expandafter{\romannumeral #1\relax}}
+\newcommand{\MRN}[1]{\text{\RNum{#1}}}
+\newcommand{\NOT}[1]{\overline{#1}}
+\newcommand{\DNOT}[1]{\overline{\overline{#1}}}
+\newcommand{\rtxt}[1]{\textsf{#1}}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Определение}
+
+\newenvironment{tightenum}{
+\begin{enumerate}
+  \setlength{\itemsep}{1pt}
+  \setlength{\parskip}{0pt}
+  \setlength{\parsep}{0pt}}{\end{enumerate}
+}
+
+\newenvironment{tightitem}{
+\begin{itemize}
+  \setlength{\itemsep}{1pt}
+  \setlength{\parskip}{0pt}
+  \setlength{\parsep}{0pt}}{\end{itemize}
+}
+
+\begin{document}
+\title{Заметки по основной математической терминологии}
+\author{Дуглас Вильямович Сервис}
+\date{Январь 2019}
+\maketitle
+
+\section{Введение}
+Главная цель этих заметках состоит в том, что представлять терминологию, определения и обозначения нескольких
+основных математических предметов (объектов), и в каком способе выражения о этих предметах правильно читается на
+русском языке. Главные источники появляются в \hyperref[sec:bib]{списке литературы}.
+\nocite{ArosevaEtal1987}
+\nocite{Glazunova2004}
+\nocite{WikipediaRussian2019}
+
+\section{Множества числа}
+\subsection{Натуральные числа}
+Если мы определяем натуральные числа как числа, возникающие при подсчёте, например: \textsl{первый, второй, третий,
+$\ldots$}, последовательность натуральных числ начитается с единицы.
+\begin{align*}
+    \mathbb{N^{*}} & \rightleftharpoons \{1,2,3, \ldots \} \quad \footnotemark \\
+    & \text{\rtxt{Множество натуральных числ равносильно по определению $1,2,3$ и т.д.}}
+\end{align*}
+\footnotetext{See ISO 80000-2}
+Однако, когда мы определяем натуральные числа как числа, возникающие при обозначении количества предметов, например:
+\textsl{нуль предметов, один предмет, два предмета, $\ldots$},  последовательность натуральных числ начинается с нуля.
+\begin{align*}
+    \mathbb{N} & \rightleftharpoons \{0,1,2, \ldots \}
+\end{align*}
+
+\section{Алгебра}
+
+\subsection{Бинарное (двухместное) отношение}
+
+\subsection{Сложение (Прибавление)}
+Сложение одна из основных бинарных операций двух аргументов. Выражение $a + b$ (\rtxt{а плюс бэ}) называется суммой
+чисел $a$ и $b$. Переменные $a$ и $b$ называется слагаемыми (слагаемое - склоняется как прилагательное)
+\[1 + 1 = 2\]
+\begin{tightitem}
+    \item \rtxt{Один плюс один будет два.}
+    \item \rtxt{Один плюс один равно двум.}
+    \item \rtxt{К одному я прибавляю (добавляю, складываю) одни.}
+    \item \rtxt{К одному прибавить один будет два.}
+\end{tightitem}
+\[a + b = c\]
+\begin{tightitem}
+    \item \rtxt{$a$ плюс $b$ будет $c$.}
+    \item \rtxt{Сумма $a$ плюс $b$ равна $c$.}
+    \item \rtxt{$a$ плюс $b$ равно $c$.}
+\end{tightitem}
+\[x + y = z\]
+\begin{tightitem}
+    \item \rtxt{икс плюс игрек будет зэт.}
+    \item \rtxt{Сумма икс плюс игрек равен зэт.}
+\end{tightitem}
+
+\subsection{Вычисление}
+
+\subsection{Умножение}
+
+\subsection{Деление}
+
+\subsection{Возведение в степень}
+
+\subsection{Извлечение корня}
+
+\FloatBarrier
+\subsection{Приоритет}
+\begin{figure}
+\begin{tabular}{|c|c|} \hline
+    Приоритет \footnotesize{(от высочайшего до нижайшего)} & Операция \\ \hline \hline
+    $1$ & возведение в степень, извлечение корня \\ \hline
+    $2$ & умножение, деление \\ \hline
+    $3$ & сложение, вычитание \\ \hline
+\end{tabular}
+\caption{}
+\end{figure}
+
+\FloatBarrier
+\section{Геометрия}
+
+\pagebreak
+\printbibliography \label{sec:bib}
+
+\section{Ссылки}
+\begin{description}[align=right,labelwidth=4cm]
+  \item [Натуральное число] {\href{https://ru.wikipedia.org/wiki/%D0%9D%D0%B0%D1%82%D1%83%D1%80%D0%B0%D0%BB%D1%8C%D0%BD%D0%BE%D0%B5_%D1%87%D0%B8%D1%81%D0%BB%D0%BE}{https://ru.wikipedia.org/wiki/\textcyrillic{Натуральное{\_}число}}}
+  \item [Сложение]{\href{https://ru.wikipedia.org/wiki/%D0%A1%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5}{https://ru.wikipedia.org/wiki/\textcyrillic{Сложение}}}
+\end{description}
+
+
+\end{document}

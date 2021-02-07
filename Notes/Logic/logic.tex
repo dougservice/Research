@@ -1,0 +1,627 @@
+%!TeX spellcheck = ru_RU
+\documentclass[fleqn,11pt]{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{mathtools}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T2A,T1]{fontenc}
+\usepackage[main=russian,english]{babel}
+
+\usepackage{enumitem}
+\usepackage{placeins}
+\usepackage{csquotes}
+\usepackage[backend=biber,hyperref=true,backref=true]{biblatex}
+\usepackage[unicode]{hyperref}
+\addbibresource{../../Common/Bibliography.bib}
+
+%%\usepackage{showframe}
+\usepackage{layout}
+\oddsidemargin = 10pt
+\marginparwidth = 10pt
+\textwidth = 450pt
+\textheight = 592pt
+\voffset = -20pt
+\setlength{\parindent}{0pt}
+\everymath{\displaystyle}
+
+\newcommand{\exwidth}{0.80\textwidth}
+
+\newcommand{\RNum}[1]{\uppercase\expandafter{\romannumeral #1\relax}}
+\newcommand{\MRN}[1]{\text{\RNum{#1}}}
+\newcommand{\NOT}[1]{\overline{#1}}
+\newcommand{\DNOT}[1]{\overline{\overline{#1}}}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Определение}
+\newtheorem{proposition}{Утверждение}
+
+\newenvironment{tightenum}{
+\begin{enumerate}
+  \setlength{\itemsep}{1pt}
+  \setlength{\parskip}{0pt}
+  \setlength{\parsep}{0pt}}{\end{enumerate}
+}
+
+\newenvironment{tightitem}{
+\begin{itemize}
+  \setlength{\itemsep}{1pt}
+  \setlength{\parskip}{0pt}
+  \setlength{\parsep}{0pt}}{\end{itemize}
+}
+
+\newenvironment{tightdesc}{
+\begin{description}
+  \setlength{\itemsep}{1pt}
+  \setlength{\parskip}{0pt}
+  \setlength{\parsep}{0pt}}{\end{description}
+}
+
+\begin{document}
+\title{Математическая логика: заметки}
+\author{Дуглас Вильямович Сервис}
+\date{Октябрь 2018}
+\maketitle
+
+\section{Введение}
+Логика является изучением законов человеческого мышления и рассуждения, результат которого мы
+используем доказывать математические утверждения и
+теоремы~\parencite{Lektarnekov2009} and~\parencite{КолДраг2006}.
+
+\section{Алгебра логики}
+
+\begin{definition}[\textbf{Имя предмета}] ~\\
+	Каждый математический предмет (объект) обозначается знаком или комбинациями знаками (выражениями), которые
+	называется именем предмета. Возможно что более одного имени обозначает один и то же предмет. В этом случае мы
+  используем знак равенста.
+\end{definition}
+\begin{center}
+	\begin{minipage}{.9\textwidth}
+		\textbf{Примеры:} $1$, $3$, $5-2$, и $\lim_{x \to 0} \frac{e^x-1}{x}$ обозначют математические предметы.
+		Предметы $5-2$ и $3$ обозначют один и то же предмет, то есть $5 - 2 = 3$. Подобно предметы $1$ и
+    $\lim_{x \to 0} \frac{e^x-1}{x}$ обозначют один и то же предмет, то есть $\lim_{x \to 0} \frac{e^x-1}{x} = 1$.
+	\end{minipage}
+\end{center}
+
+\begin{center}
+  \begin{minipage}{.9\textwidth}
+    \textbf{Замечание:} Значение знак равенста зависит от контекста.
+      \begin{center}
+      \begin{minipage}{.95\textwidth}
+        \begin{tightdesc} %%[align=left,labelwidth=3cm]
+          \item [Одно и то же:] В этом случае знак равенства значит, что два имени (знака) обозначают один и
+          то же предмет. Пример: $6+2=8$.
+          \item [Определение:] В контексте определения знак равенства определяет, что переменная обозначает выбранный предмет. Пример: Пусть $x = 2$.
+          \item [Уравнение:] В контексте уравнения знак равенства становится логической связью (логическим
+          оператором), которая (который) является истинной (истинным) для подмножества областей определениий переменных.
+          \item [Тождество:] В контексте тождества знак равенства становится логическим утверждением, которое является
+          истинным при любых значениях переменных. Пример: $\sin^2 x + \cos^2 x = 1$.
+        \end{tightdesc}
+      \end{minipage}
+      \end{center}
+  \end{minipage}
+\end{center}
+
+\begin{definition}[\textbf{Именная форма}] ~\\
+	Выражение, содержащее свободные переменные, называются именной формой, если после надлежащей
+	подстановки оно превращается в имя предмета.
+\end{definition}
+\begin{center}
+	\begin{minipage}{.9\textwidth}
+		\textbf{Примеры:} $x^2 + 2$, $\sin{(\alpha + \beta)}$, и $\lim_{x \to 0} \frac{\sin{(x\,y)}}{x}$.
+
+		Обратите внимание, что только $y$ является свободной переменной в последнем примере.
+	\end{minipage}
+\end{center}
+
+\begin{definition}[\textbf{Высказывание}] ~\\
+	Всякое предложение называется высказыванием, если оно утверждается что-либо о чём-либо и при этом можно
+	решить, что в данных условиях оно истинно или ложно.
+
+	Выражение, содержащее знак равенства или неравенства, и утверждает что-то о чём-то,
+	называется высказыванием.
+\end{definition}
+
+\begin{definition}[\textbf{Высказывательная форма}] ~\\
+	Выражение, содержащее свободные переменные, называются высказывательной формой, если после
+	надлежащей подстановки оно превращается в высказывание.
+\end{definition}
+
+\begin{definition}[\textbf{Терм}] ~\\
+	Имена предметов и именные формы называют термами.
+\end{definition}
+
+\begin{definition}[\textbf{Формула}] ~\\
+	Высказывания и высказывательные формы называют формулами.
+\end{definition}
+
+\begin{definition}[\textbf{Элементарное высказывание}] ~\\
+Всякое предложение, которое предлагает только одно утверждение, называется элементарным высказыванием.
+\end{definition}
+
+\begin{definition}[\textbf{Сложное высказывание или формула алгебры логики}] ~\\
+	Всякое предложение, построено из элементарных высказываний с помощью логических связок
+	$\left\{\overline{\;\cdot\;}, \land, \lor, \rightarrow, \leftrightarrow \right\}$, называется сложным или
+	составным высказыванием или формулой алгебры логики.
+\end{definition}
+Пусть $V = \left\{0,1\right\}$, тогда любой логический оператор,
+$\ast \in \left\{\overline{\;\cdot\;}, \land, \lor, \rightarrow, \leftrightarrow\right\}$,
+является либо унарным, либо бинарным отабражением из множества $V$ в множестве $V$. То есть
+либо $\ast : V \to V$, либо $\ast : V \times V \to V$~\footnote{Знак $\ast$ читается "<звёздочка">.
+Символ $\times$ читается "<перекрестное произведение">.}.
+
+\subsection{Логические операции (Логические связки) (logical connectives)}
+
+\begin{definition}[\textbf{Отрицание (Negation)}] ~\\
+	Отрицание высказывания (формул) $x$, является истинным, если высказывание $x$ ложно, и ложным, если
+	высказывание $x$ истинно. Отпицание является отображением из $V =\{0,1\}$ в $V$, то есть $\neg : V \to V$.
+	Отрицание высказывания $x$ написано $\overline{x}$ или $\neg x$ и читается
+	"<не икс"> или "<неверно, что икс">.
+	\begin{center}
+		\begin{tabular}{|c|c|} \hline
+			$x$ & $\neg x$ \\ \hline
+			0 & 1 \\
+			1 & 0 \\
+			\hline
+		\end{tabular}
+	\end{center}
+\end{definition}
+
+\begin{definition}[\textbf{Конъюнкция (Conjunction)}] ~\\
+	Конъюнкция двух высказываний (формул) $x$ и $y$ является истинным, если оба высказывания $x$ и $y$
+	истинны, и ложным если одно из них ложно. Конъюнкция является отображением из $V\times V$ в $V$,
+	то есть $\land : V \times V \to V$. Конъюнкция $x$ и $y$ написана $x \land y$ и читается "<икс и игрэк">.
+	\begin{center}
+		\begin{tabular}{|c|c|c|} \hline
+			$x$ & $y$ & $x \land y$  \\ \hline
+			0 & 0 & 0 \\
+			0 & 1 & 0 \\
+			1 & 0 & 0 \\
+			1 & 1 & 1 \\
+			\hline
+		\end{tabular}
+	\end{center}
+\end{definition}
+
+\begin{definition}[\textbf{Дизъюнкция (Disjunction)}] ~\\
+	Дизъюнкция двух высказываний (формул) $x$ и $y$ является истинным, если одно из них истинно, и ложным
+	если они оба ложны. Дизъюнкция является отображением из $V \times V$ в $V$. То есть $\land : V \times V \to V$.
+	Дизъюнкция $x$ и $y$ написана $x \lor y$ и читается "<икс или игрэк">.
+	\begin{center}
+		\begin{tabular}{|c|c|c|} \hline
+			$x$ & $y$ & $x \lor y$  \\ \hline
+			0 & 0 & 0 \\
+			0 & 1 & 1 \\
+			1 & 0 & 1 \\
+			1 & 1 & 1 \\
+			\hline
+		\end{tabular}
+	\end{center}
+\end{definition}
+
+\begin{definition}[\textbf{Импликация (Conditional Logical Connective, Material Implication)}] ~\\
+  Импликация двух высказываний (формул) $x$ и $y$ является ложным, только когда $x$ истинно и $y$ ложно, и
+  истинным в каждом другом случае. Импликация является отображением из $V \times V$ в $V$, то есть
+  $\land : V \times V \to V$. Импликация $x$ и $y$ написана $x \rightarrow y$ и читается "<из икс
+	следует игрэк"> или "<если икс, то игрэк">. Высказывание $x$ \cdash--- условия или посылка, и высказывание
+	$y$ \cdash--- следствие или заключение. Высказывания $x$ и $y$ также называют цедентами: $x$ \cdash---
+  антецедентом а $y$ \cdash--- сукцеденнтом (консеквентом).
+	\begin{center}
+		\begin{tabular}{|c|c|c|} \hline
+			$x$ & $y$ & $x \to y$  \\ \hline
+			0 & 0 & 1 \\
+			0 & 1 & 1 \\
+			1 & 0 & 0 \\
+			1 & 1 & 1 \\
+			\hline
+		\end{tabular}
+	\end{center}
+\end{definition}
+
+\begin{definition}[\textbf{Эквиваленция (Biconditional Logical Connective)}] ~\\
+	Эквиваленция двух высказываний (формул) $x$ и $y$ является истинным, когда оба высказывания $x$ и $y$
+	либо одновременно истинны, либо одновременно ложны, и ложным в каждом другом случае. Эквиваленция $x$ и
+	$y$ написана $x \leftrightarrow y$ и читается "<икс тогда и только тогда, когда игрэк"> или
+	"<для того, чтобы икс, необходимо и достаточно, чтобы игрэк">.
+	\begin{center}
+		\begin{tabular}{|c|c|c|} \hline
+			$x$ & $y$ & $x \leftrightarrow y$  \\ \hline
+			0 & 0 & 1 \\
+			0 & 1 & 0 \\
+			1 & 0 & 0 \\
+			1 & 1 & 1 \\
+			\hline
+		\end{tabular}
+	\end{center}
+\end{definition}
+
+\subsection{Равносильность}
+
+\begin{definition}[\textbf{Равносильность}] ~\\
+	Два высказывания (две формулы) $x$ и $y$ являются равносильными если они принимают одинаковые логические
+	значения на любом наборе значений входящих в формулы элементарных высказываний. Равносильность $x$ и $y$
+	написана $x \equiv y$ ($x \Leftrightarrow y$) и читается "<икс равносилен игрек">, или "<формулы икс и игрек равносильны">.
+\end{definition}
+
+\paragraph{Отношение между эквивалентностью и равносильностью}
+Если эквивалентность двух формул $A$ и $B$, $A \leftrightarrow B$ - тавтология, то формулы $A$ и $B$ - равносильны,
+$A \equiv B$, и обратно, если две формулы $A$ и $B$ равносильны, $A \equiv B$, то эквивалентность $A$ и $B$,
+$A \leftrightarrow B$ - тавтология.
+\FloatBarrier
+\begin{figure}[h]
+	\begin{center}
+		\begin{tabular}{|ccc|c|ccc|} \hline
+			($x$ & $\rightarrow$ & $y$) & $\leftrightarrow$ & ($x$ & $\land$ & $y$) \\ \hline
+			0 & \textbf{1} & 0 & \textbf{0} & 0 & \textbf{0} & 0 \\
+			0 & \textbf{1} & 1 & \textbf{0} & 0 & \textbf{0} & 1 \\
+			1 & \textbf{0} & 0 & \textbf{1} & 1 & \textbf{0} & 0 \\
+			1 & \textbf{1} & 1 & \textbf{1} & 1 & \textbf{1} & 1 \\
+			\hline
+		\end{tabular}
+	\end{center}
+	\caption{Эквиваленция двух высказываний, которые не равносильны}\label{fig:biconNotEquiv}
+\end{figure}
+В рисовании~\ref{fig:biconNotEquiv} логическая связка эквиваленции не является равносильной, потому что в первых
+двух случаях значения различные.
+
+\begin{figure}[h]
+	\begin{center}
+		\begin{tabular}{|ccc|c|ccc|} \hline
+			($x$ & $\rightarrow$ & $y$) & $\leftrightarrow$ & ($\neg x$ & $\lor$ & $y$) \\ \hline
+			0 & \textbf{1} & 0 & \textbf{1} & 1 & \textbf{1} & 0 \\
+			0 & \textbf{1} & 1 & \textbf{1} & 1 & \textbf{1} & 1 \\
+			1 & \textbf{0} & 0 & \textbf{1} & 0 & \textbf{0} & 0 \\
+			1 & \textbf{1} & 1 & \textbf{1} & 0 & \textbf{1} & 1 \\
+			\hline
+		\end{tabular}
+	\end{center}
+	\caption{Эквиваленция двух высказывания, которые равносильны}\label{fig:biconEquiv}
+\end{figure}
+В рисовании~\ref{fig:biconEquiv} логическая связка эквиваленции является равносильной, потому что
+в каждых случаях значения обоих связки одинаковые.
+\FloatBarrier
+
+\paragraph{Отношение между импликацией и логическим следованием}
+Если импликация двух формул $A$ и $B$, $A \rightarrow B$ - тавтология, то формулы $A$ и $B$ - логическое следование,
+$A \implies B$ ($A \vdash B$).
+
+\FloatBarrier
+
+\begin{figure}[h]
+	\begin{center}
+		\begin{tabular}{|c|c|ccc|} \hline
+			$x$ & $\rightarrow$ & ($y$ & $\rightarrow$ & $x$) \\ \hline
+			\textbf{0} & \textbf{1} & 0 & \textbf{1} & 0 \\
+			\textbf{0} & \textbf{1} & 1 & \textbf{0} & 0 \\
+			\textbf{1} & \textbf{1} & 0 & \textbf{1} & 1 \\
+			\textbf{1} & \textbf{1} & 1 & \textbf{1} & 1 \\
+			\hline
+		\end{tabular}
+	\end{center}
+	\caption{Импликация, которая тавтология}
+\end{figure}
+
+\FloatBarrier
+\subsubsection{Основные равносильности}
+\begin{align*}
+	& \left. \begin{aligned}
+	    \!&\; x \land x \equiv x \\
+	    \!&\; x \lor x \equiv x \\
+    \end{aligned}\; \right\} \text{\cdash--- законы идемпотентности} \\
+    &\; x \land \; \textbf{и} \equiv x \\
+    &\; x \lor \; \textbf{и} \equiv \textbf{и} \\
+    &\; x \land \; \textbf{л} \equiv \textbf{л} \\
+    &\; x \lor \; \textbf{л} \equiv x \\
+    &\; x \land \; \NOT{x} \equiv \textbf{л} \;\; \text{\cdash--- закон противоречия}\\
+    &\; x \lor \; \NOT{x} \equiv \textbf{и} \;\; \text{\cdash--- закон исключенного третьего}\\
+    &\; \DNOT{x} \equiv x \;\; \text{\cdash--- закон снятия двойного отрицания}\\
+	& \left. \begin{aligned}
+	    & x \land (y \lor x) \equiv x \\
+	    & x \lor (y \land x) \equiv x \\
+	\end{aligned} \; \right\} \text{\cdash--- законы погллощения}
+\end{align*}
+
+\subsubsection{Равносильности, выражающие один логические операции через другие}
+\begin{align*}
+    &\; x \leftrightarrow y \equiv (x \rightarrow y) \land (y \rightarrow x) \\
+    &\; x \rightarrow y \equiv \NOT{x} \lor y \\
+	& \left. \begin{aligned}
+	    & \NOT{x \land y} \equiv \NOT{x} \lor \NOT{y} \\
+	    & \NOT{x \lor y} \equiv \NOT{x} \land \NOT{y} \\
+	\end{aligned} \; \right\} \text{\cdash--- законы де Моргана} \\
+    &\; x \land y \equiv \NOT{\NOT{x} \lor \NOT{y}} \\
+    &\; x \lor y \equiv \NOT{\NOT{x} \land \NOT{y}} \\
+\end{align*}
+
+\subsubsection{Равносильности, выражающие основные законы алгебры логики}
+\begin{align*}
+    &\; x \land y \equiv y \land x \; \text{\cdash--- коммутативность конъюнкции} \\
+    &\; x \lor y \equiv y \lor x \; \text{\cdash--- коммутативность дизъюкции} \\
+    &\; x \land (y \land z) \equiv (x \land y) \land z \; \text{\cdash--- ассоциативность конъюнкции} \\
+    &\; x \lor (y \lor z) \equiv (x \lor y) \lor z \; \text{\cdash--- ассоциативность дизъюкции} \\
+    &\; x \land (y \lor z) \equiv (x \land y) \lor (x \land z) \; \text{\cdash--- дистрибутивность конъюнкции относительно дизъюнкции} \\
+    &\; x \lor (y \land z) \equiv (x \lor y) \land (x \lor z) \; \text{\cdash--- дистрибутивность дизъюкции относительно конъюнкции}
+\end{align*}
+
+
+\section{Исчисление высказываний}
+\subsection{Алфавит}
+Алфавит исчисления высказываний состоит из символов трёх категорий:
+\begin{tightenum}
+	\item Переменные высказывания \cdash--- $a, b, \dots x, y, z \dots$.
+	\item Логические связки \cdash--- $\left\{\overline{\;\cdot\;}, \land, \lor, \rightarrow \right\}$.
+	\item Скобки \cdash--- $\left(\right)$.
+\end{tightenum}
+
+\subsection{Формулы}
+Если $x$ \cdash--- переменная, и $A, B$ \cdash--- формулы, то
+\begin{tightenum}
+	\item $x$ \cdash--- элементарная формула.
+	\item $\NOT{A}$ \cdash--- формула.
+	\item $A \ast B$ (где $\ast \in \{\land, \lor, \rightarrow\}$) \cdash--- формула.
+\end{tightenum}
+
+\subsection{Подформулы (Части формулы)}
+Если $x$ \cdash--- переменная и $A, B, C$ \cdash--- формулы, то
+\begin{tightenum}
+	\item $A = x$, подформулы $A$ \cdash--- $x$.
+	\item $A = \NOT{B}$, подформлы $A$ \cdash--- $\NOT{B}$ и все подформлы $B$.
+	\item $A = B \ast C$ (где $\ast \in \{\land, \lor, \rightarrow\}$),  подформулы $A$ \cdash--- $B \ast C$, $B$, $C$,
+	и все подформулы $B$ и $C$.
+\end{tightenum}
+
+
+\subsection{Система аксиом (интуиционистского) исчисления высказываний }
+\begin{align}
+	\begin{matrix*}[l]
+		\text{I}_1 & x \rightarrow (y \rightarrow x) \\
+		\text{I}_2 & (x \rightarrow (y \rightarrow z)) \rightarrow ((x \rightarrow y) \rightarrow (x \rightarrow z)) \\
+		\text{II}_1 & x \land y \rightarrow x \\
+		\text{II}_2 & x \land y \rightarrow y \\
+		\text{II}_3 & (z \rightarrow x) \rightarrow ((z \rightarrow y) \rightarrow (z \rightarrow x \land y))\\
+		\text{III}_1 & x \rightarrow x \lor y \\
+		\text{III}_2 & y \rightarrow x \lor y \\
+		\text{III}_3 & (x \rightarrow z) \rightarrow ((y \rightarrow z) \rightarrow (x \lor y \rightarrow z)) \\
+		\text{IV}_1 & (x \rightarrow y ) \rightarrow (\NOT{y} \rightarrow \NOT{x}) \\
+		\text{IV}_2 & x \rightarrow \DNOT{x}\\
+		\text{IV}_3 & \DNOT{x} \rightarrow x
+	\end{matrix*}
+\end{align}
+Каждая аксиома исчисления высказываний является тождественно истинной, то есть тавтологией.
+
+\begin{definition}[\textbf{Исходные доказуемые формулы}] ~\\
+	Аксиомы исчисления высказываний определяют исходный класс доказуемых формул.
+\end{definition}
+
+\begin{definition}[\textbf{Доказуемая формула (Provable Formula)}] ~\\
+ 	Общая доказуемая формула образована из исходных доказуемых формул путём применения правил вывода.
+\end{definition}
+Если формула $A$ \cdash--- доказуемая формула, то обозначается $\vdash A$ и читается
+"<Формула $B$ доказуема"> (см.~\ref{sec:sequent}).
+
+\subsection{Правило вывода (Inference Rules)}
+
+\subsubsection{Секвенция}\label{sec:sequent}
+
+\begin{definition}[\textbf{Секвенция}] ~\\
+	Секвенцией в системе натурального вывода (\textbf{NK}) называется выражение вида $H \vdash B$, где
+	$H$ является конечным (возомжно пустым) последовательностью формул исчисления высказываний и $B$
+	является формулой исчисления высказываний. $H$ и $A$ называется цедентами: $H$ \cdash--- антецедентом и
+	$A$ \cdash--- сукцедентом. Знак $\vdash$ назывется знаком выводимости.
+	(см.~\ref{url:sequent})
+\end{definition}
+Когда $H$ \cdash--- пустая совокупность $\vdash B$ означает, что формула $B$ \cdash--- доказуема формула.
+Выражение $H \vdash B$ читается "<Формулы $B$ выводима из (дизъюнкция) формл совокупности $H$>
+
+\begin{itemize}
+	\item Безусловное утверждение: секвенция $\vdash B$ означает, что формула $B$ доказуема.
+	\item Простое условное утверждение: секвенция $A \vdash B$ означает, что если формула $A$ догазуема,
+		    то формула $B$ доказуема и читается "<Формула $B$ выводима из формулы $A$">.
+	\item Сложное условное утверждение: секвенция $A_1, A_2, \dots, A_n \vdash B_1, B_2, \dots, B_m$ означает,
+				что если формула $A_1 \land A_2 \land \dots \land A_n$ доказуема, то доказуема
+				$B_1 \lor B_2 \lor \dots \lor B_m$ (секвенциальная система \textbf{LK}).
+\end{itemize}
+
+\subsubsection{Правило подстановки}
+Если $A$, $A_1$, $A_2$ \cdash--- доказуемые формулы исчисления высказываний, $B$ \cdash--- произвольная
+формула исчисления высказывания, и $x$, $y$ \cdash--- переменные, то операция замены в формуле $A$
+переменной $x$ формулой $B$ называется подстановкой, и записывается:
+\begin{align}
+	& \left[A \right]_{x=B}
+\end{align}
+которое читается "<подстановка в формуле $A$ переменной $x$ формулой $B$">,
+"<подстановка в формуле $A$ вместо переменной $x$ формула $B$"> или
+"<подстановка переменой $B$ вместо переменной $x$ в формуле $A$">.
+
+Поскольку $A$ \cdash--- доказуемая формула можно писать
+\begin{align}
+	& \frac{\vdash A}{\vdash \left[A \right]_{x=B}}
+\end{align}
+которое читается "<Если формула $A$ \cdash--- доказуема, то подстановка в формуле $A$ переменной
+$x$ формулой $B$ \cdash--- доказуема.">
+
+\begin{align}
+	\text{Если} \quad A = x, \quad &\text{то} \quad \left[A\right]_{x=B} = B \\
+	\text{Если} \quad A = y,\quad &\text{то} \quad \left[A\right]_{x=B} = y \\
+	\left[\;\NOT{A}\;\right]_{x=B} &= \NOT{\left[A\right]_{x=B}} \\
+	\text{Если} \quad A = A_1 \ast A_2, \quad &\text{то} \quad \left[A\right]_{x=B} = \left[A_1 \ast A_2\right]_{x=B}
+	  = \left[A_1\right]_{x=B} \ast \left[A_2\right]_{x=B} \\
+		 & \qquad \text{где $\ast \in \{\land, \lor, \rightarrow\}$}
+\end{align}
+
+\subsubsection{Правила заключения}
+Если формулы $B$ истенно, $B \rightarrow C$ \cdash--- доказуемые формулы исчисления высказываний, то формула $C$
+доказуемая.
+\begin{align}
+	& \frac{\vdash B, \; \vdash B \rightarrow C}{\vdash C}
+\end{align}
+
+\subsubsection{Производные правила вывода}
+Эти производные правила вывода получаются из правил подстановка и заключения.
+\begin{align}
+	& \frac{\vdash A}{\vdash \left[A\right]_{x_1=B_1,x_2=B_2, \dots, x_n=B_n}}
+		\; \text{\cdash--- правило одновременной подстановки} \\
+	& \frac{\vdash A \rightarrow B, \vdash B \rightarrow C}{\vdash A \rightarrow C}
+		\; \text{\cdash--- правило силлогизма} \\
+	& \frac{\vdash A \rightarrow B}{\vdash \NOT{B} \rightarrow \NOT{A}}
+		\; \text{\cdash--- правило контрапозиции} \\
+	& \frac{\vdash A \rightarrow \NOT{\NOT{B}}}{\vdash A \rightarrow B}
+		\quad \frac{\vdash \NOT{\NOT{A}} \rightarrow B}{\vdash A \rightarrow B}
+			\; \text{\cdash--- правило снятия двойного отрицания} \\
+	& \frac{\vdash A_1, \vdash A_2, \dots, \vdash A_n; \, \vdash A_1 \rightarrow (A_2 \rightarrow (\dots (A_n \rightarrow L) \dots))  }{ \vdash L}
+		\; \text{\cdash--- правило сложного заключения}
+\end{align}
+
+\subsection{Выводимость формулы из совокупности формул}
+
+\begin{definition}[\textbf{Выводимость формулы из совокупности формул}] ~\\
+	Пусть $H$ является конечной совокупностью формул, $H = \{A_1, A_2, \dots, A_n \}$. Формула $B$
+	выводима из совокупности $H$ $(H \vdash B)$, если
+	\begin{tightenum}
+		\item либо $B \in H$
+		\item либо $B$ \cdash--- доказуемая формула исчесления высказываний
+		\item либо $H \vdash C$, $H \vdash C \rightarrow B$
+	\end{tightenum}
+\end{definition}
+Все формулы выводимые из совокупности $H$ \cdash--- доказуемые, когда совокупность $H$ только содержит
+доказуемые формулы.
+
+\subsubsection{Правила выводимости}
+Пусть $H$ и $W$ \cdash--- две совокупности формул исчисления высказываний, и $H,W$ обозначает их
+объединение такое, что $H,W = H \cup W$.
+\begin{align}
+	& \frac{H \vdash A}{H, W \vdash A} \\
+	& \frac{H, C \vdash A; \, H \vdash C}{H \vdash A} \\
+	& \frac{H, C \vdash A; \, W \vdash C}{H, W \vdash A} \\
+	& \frac{H \vdash C \rightarrow A}{H, C \vdash A} \\
+	& \frac{H,C \vdash A}{H \vdash C \rightarrow A} \; \text{\cdash--- теорема дедукции} \\
+	& \frac{\{C_1, C_2, \dots, C_n\} \vdash A}{\vdash C_1 \rightarrow (C_2 \rightarrow \dots (C_n \rightarrow A))}
+		\; \text{\cdash--- обобщенная теорема дедукции} \\
+	& \frac{H \vdash A; \, H \vdash B}{H \vdash A \land B} \; \text{\cdash--- правило введения конхюнкции} \\
+	& \frac{H,A \vdash C; \, H,B \vdash C}{H, A \lor B \vdash C} \; \text{\cdash--- правило введения дизъюнкции}
+\end{align}
+
+\subsection{Некоторые законов логики}
+Можно доказать некоторые законов логиий из правила выводимости и теорема дедукции.
+
+\begin{align}
+	& \frac{\vdash A \rightarrow (B \rightarrow C)}{\vdash B \rightarrow (A \rightarrow C)}
+		\; \text{\cdash--- правило перестоновки посылок} \\
+	& \frac{\vdash A \rightarrow (B \rightarrow C)}{\vdash A \land B \rightarrow C}
+		\; \text{\cdash--- правило соединения посылок} \\
+	& \frac{\vdash A \land B \rightarrow C}{\vdash A \rightarrow (B \rightarrow C)}
+		\; \text{\cdash--- правило разъединения посылок}
+\end{align}
+
+\pagebreak
+
+\section{Логика предикатов}
+
+\begin{definition}[\textbf{Одноместный предикат}] ~\\
+	Одноместным предикатом $P(x)$ называется произвольная функция переменного $x$, определенная на классе
+	\footnote{Мы определяем функции на классах, которые являются равным когда они содержит одни и те же элементы.
+	Этот путь является необходимом, чтобы избежать циклически зависимости между логикой предикатов и теорией множества,
+	определение которой требует логики предикатов.
+	} $M$ и принимающая
+	значения из класса $\{1,0\}$.
+\end{definition}
+
+\begin{definition}[\textbf{Область определения предиката}] ~\\
+Класс $M$, на котором определён предикат $P(x)$, называется областью определения предиката.
+\end{definition}
+
+\begin{definition}[\textbf{Множество истинности предиката}] ~\\
+	Класс всех элементов, которые принадлежат классу $M$, и при которых предикат принимают значение истинно называется
+	классом истинности $I_P$ предиката $P(x)$.
+	\begin{align}
+		I_P &= \left\{x : x \in M, P(x) = 1 \right\}
+	\end{align}
+\end{definition}
+
+\begin{definition}[\textbf{Тождественно истинный предикат}] ~\\
+	\begin{align}
+		I_P &= M \quad (I_P = \varnothing)
+	\end{align}
+\end{definition}
+
+Определяет предикат $P(x)$ на множестве $M = \left\{a_1, a_2, \dots , a_n \right\}$. Если предикат $P(x)$
+является тождественно истинным на множестве $M$, то будет истинными высказывания
+$P(a_1), P(a_2), \dots, P(a_n)$,
+высказывания $P(a_1) \land P(a_2) \land \dots \land P(a_n)$ и высказывание $\forall x P(x)$. Следовательно
+\begin{align}
+	\forall x P(x) \equiv P(a_1) \land P(a_2) \land \dots \land P(a_n)
+\end{align}
+Подобно можно показать, что
+\begin{align}
+	\exists x P(x) \equiv P(a_1) \lor P(a_2) \lor \dots \lor P(a_n)
+\end{align}
+Очевидно, что можно рассматривать кванторы операции всеобщнотси и существования как
+обобщение операций коньюнкции и дизьюнкции на бесконечный множества.
+
+\printbibliography
+
+\section{Ссылки}
+\begin{enumerate}
+  \item Исчисление секвенций: {\href{https://ru.wikipedia.org/wiki/%D0%98%D1%81%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5_%D1%81%D0%B5%D0%BA%D0%B2%D0%B5%D0%BD%D1%86%D0%B8%D0%B9}{https://ru.wikipedia.org/wiki/\textcyrillic{Исчисление{\_}секвенций}}}\label{url:sequent}
+\end{enumerate}
+
+\clearpage
+
+\section{Добавление}
+
+\begin{definition}[\textbf{Тождество (Identity)}] ~\\
+	Равентсво, выполняющееся на всём множестве заначений входящих в него переменных.
+\end{definition}
+
+\begin{itemize}
+    \item $f(x)$ - \textbf{эф от икс}.
+    \item $f(x,y)$ - \textbf{эф от икс игрек}.
+    \item $\phi \land \psi$ конъюнкция формул $\phi$ и $\psi$. ~\\
+    \textbf{фи и пси}.
+    \item $\phi \lor \psi$ дизъюнкция формул $\phi$ и $\psi$. ~\\
+    \textbf{$\boldsymbol{\phi}$ или $\boldsymbol{\psi}$}.
+    \item $\phi \rightarrow \psi$ импликация (следование) формул $\phi$ и $\psi$. ~\\
+    \textbf{из $\boldsymbol{\phi}$ следует $\boldsymbol{\psi}$},
+		\textbf{если $\boldsymbol{\phi}$, то $\boldsymbol{\psi}$}.
+    \item $\phi \iff \psi$ эквиваленция (эквиваленцность) формул $\phi$ и $\psi$. ~\\
+    \textbf{$\boldsymbol{\phi}$ тогда и только тогда, когда $\boldsymbol{\psi}$} ~\\
+    \textbf{для того, чтобы $\boldsymbol{\phi}$,необходимо и достаточно, чтобы $\boldsymbol{\psi}$}
+    \item $\forall x \: \phi(x)$ квантор всеобщности ~\\
+    \textbf{для любого икс истинно фи от икс}
+    \item $\exists x \: \phi(x)$ квантор существования ~\\
+    \textbf{существует икс, при котором фи от икс}
+    \item $\exists! x \: \phi(x)$ квантор существования ~\\
+    \textbf{существует единственное икс, при котором фи от икс}
+    \item $\coloneqq$ символ для определения обозначений. ~\\
+	\item $\left.\mid \right.$ или $:$ ~\\
+	\textbf{такой что} - such that \\
+\end{itemize}
+
+\subsection{Переменная}
+\begin{itemize}
+    \item $x$ - переменная
+    \item Связанная переменная: Переменная называется связанной, если она стоит под каким-либо квантором.
+    \item Свободная переменная: Переменная называется свабодной, если она не стоит под квантором.
+\end{itemize}
+
+\section{Выражение}
+\begin{itemize}
+    \item \textbf{из-за того, что} - by reason of the fact that
+    \item \textbf{с тем условием, что} - on the condition that
+    \item \textbf{я утверждаю, что} - my submission is that
+    \item \textbf{трагедия в том, что} - the tragedy is that
+    \item \textbf{предполжим, что} - on the supposition that
+    \item \textbf{считать, что} - hold that
+    \item \textbf{в том что} - in that it
+    \item \textbf{ну что же} - what of that
+    \item \textbf{при котором} - such that : where in : whereby
+\end{itemize}
+
+\section{Изборник}
+\begin{itemize}
+	\item Logical equivalence $\Leftrightarrow$ and biconditional connective $\leftrightarrow$.
+	\item Logical implication $\Rightarrow$ and conditional connective $\rightarrow$.
+\end{itemize}
+\end{document}

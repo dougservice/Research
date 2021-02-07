@@ -1,0 +1,110 @@
+
+
+\usepackage[T1,T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english,russian]{babel}
+
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+\usepackage{esint}
+\usepackage{exscale}
+\usepackage{cancel}
+\usepackage{mathtools}
+\usepackage{xfrac}
+%%\usepackage[multiple,symbol]{footmisc}
+
+\usepackage{bibentry}
+\usepackage{natbib}
+\usepackage{listings}
+\usepackage{hyperref}
+\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
+\usepackage{framed}
+
+\usepackage{placeins}
+\usepackage{parskip}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{tikz}
+\usepackage{comment}
+
+%%\usepackage{showframe}
+\usepackage{layout}
+\oddsidemargin = 10pt
+\marginparwidth = 10pt
+\textwidth = 450pt
+
+\usepackage{fancyhdr}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+\pagestyle{fancy}
+\cfoot{\copyright Doug Service 2015 \doclicenseIcon}
+
+\usepackage{
+% babel,
+% hyperref,
+% hyperxmp
+}
+\usepackage[
+  type={CC},
+  modifier={by-nc-sa},
+  version={3.0},
+  imagewidth=10em
+]{doclicense}
+
+%% Theorems and definitions
+\theoremstyle{definition}
+\newtheorem{newdef}{Definition}[section]
+\newtheorem{prop}{Proposition}[section]
+\newtheorem{lem}{Lemma}[section]
+
+%% Useful commands
+\newcommand{\sigh}     {\hat{\sigma}}
+\newcommand{\bvec}[1]  {\boldsymbol{#1}}
+
+\newcommand{\PB}[1]    {\mathbb{P} \left[ #1 \right]}
+\newcommand{\CPB}[2]   {\mathbb{P} \left[ #1 \middle| #2 \right]}
+\newcommand{\RPB}[1]   {\widetilde{\mathbb{P}} \left[ #1 \right]}
+\newcommand{\RCPB}[2]  {\widetilde{\mathbb{P}} \left[ #1 \middle| #2\right]}
+
+\newcommand{\EX}[1]    {\mathbb{E} \left[ #1 \right]}
+\newcommand{\EXQ}[2]   {\mathbb{E}^{\mathbb{#1}} \left[ #2 \right]}
+\newcommand{\VAR}[1]   {\mathbb{V} \left[ #1 \right]}
+\newcommand{\COV}[2]    {\mathrm{Cov} \left[ #1 , #2\right]}
+\newcommand{\CEX}[2]   {\mathbb{E} \left[ #1 \middle| #2 \right]}
+\newcommand{\CEXQ}[3]   {\mathbb{E}^{\mathbb{#1}} \left[ #2 \middle| #3 \right]}
+\newcommand{\CVAR}[2]  {\mathbb{V} \left[ #1 \middle| #2 \right]}
+\newcommand{\REX}[1]   {\widetilde{\mathbb{E}} \left[ #1 \right]}
+\newcommand{\RCEX}[2]  {\widetilde{\mathbb{E}} \left[ #1 \middle| #2 \right]}
+
+\newcommand{\fd}[2]    { \frac{d \, #1}{d \, #2}}
+\newcommand{\fdt}[2]   { \frac{d^2 \, #1}{d \, #2^2}}
+\newcommand{\fdn}[3]   { \frac{d^{#3} \, #1}{d \, #2^{#3}}}
+\newcommand{\pd}[2]    { \frac{\partial \, #1}{\partial \, #2}}
+\newcommand{\pdt}[2]   { \frac{\partial^2 \, #1}{\partial \, #2^2}}
+\newcommand{\MAX}[2]   {\underset{#1}{\mathrm{max}}\{#2\}}
+\newcommand{\MIN}[2]   {\underset{#1}{\mathrm{min}}\{#2\}}
+\newcommand{\FT}[2]    {\mathcal{#1}_{#2}}
+\newcommand{\FTB}[2]    {\left\{\mathcal{#1}_{#2}\right\}_{#2 \ge 0}}
+\newcommand{\FTI}[2]   {\mathcal{#1}_{-\infty,#2}}
+\newcommand{\ID}[2]    {\mathbb{I}_{ \{#1\} } (#2)}
+\newcommand{\IDI}[1]   {\mathbb{I}_{ \{#1\} }}
+\newcommand{\CID}[3]   {\mathbb{I}_{ \{#1 | #2\} } (#3)}
+\newcommand{\CIDI}[2]  {\mathbb{I}_{ \{#1 | #2\} }}
+\newcommand{\BorelR}   {\mathcal{B}(\mathbb{R})}
+\newcommand{\Borel}[1] {\mathcal{B}(#1)}
+
+\newcommand{\nth}[2]{\ensuremath{#1^\text{#2}}}
+
+\newcommand{\DMOD} {D^{\text{MOD}}}
+\newcommand{\MTR}[1]    {\mathrm{MTR}\left[#1\right]}
+\newcommand{\SGN}[1]    {\mathrm{sgn}\left(#1\right)}
+
+
+\def\keywords{\vspace{.5em}
+{\textit{Keywords}:\,\relax%
+}}
+\def\endkeywords{\par}

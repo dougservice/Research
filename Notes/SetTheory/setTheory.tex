@@ -1,0 +1,102 @@
+%!TeX spellcheck = ru_RU
+\documentclass[fleqn,11pt]{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{mathtools}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T2A,T1]{fontenc}
+\usepackage[main=russian,english]{babel}
+
+\usepackage{csquotes}
+\usepackage[unicode]{hyperref}
+\usepackage[backend=biber,hyperref=true,backref=true]{biblatex}
+\addbibresource{../../Common/Bibliography.bib}
+
+%%\usepackage{showframe}
+\usepackage{layout}
+\oddsidemargin = 10pt
+\marginparwidth = 10pt
+\textwidth = 450pt
+\textheight = 592pt
+\voffset = -20pt
+
+\setlength{\parindent}{0pt}
+
+\newcommand{\RNum}[1]{\uppercase\expandafter{\romannumeral #1\relax}}
+\newcommand{\MRN}[1]{\text{\RNum{#1}}}
+\newcommand{\NOT}[1]{\overline{#1}}
+\newcommand{\DNOT}[1]{\overline{\overline{#1}}}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Определение}
+
+\newenvironment{tightenum}{
+\begin{enumerate}
+  \setlength{\itemsep}{1pt}
+  \setlength{\parskip}{0pt}
+  \setlength{\parsep}{0pt}}{\end{enumerate}
+}
+
+\begin{document}
+\title{Теория множества: заметки}
+\author{Дуглас Вильямович Сервис}
+\date{Октябрь 2018}
+\maketitle
+
+\section{Введение}
+
+\subsection{Атомарной формулы и принадлежность}
+Дано два переменных $x$, $y$ обозначающие произвольные множества, где $y$ также является
+множеством элементов-множеств, содержащее $x$, мы используем следующее обозначение:
+$x \in y$, который читается "<икс принадлежит игрек">, "<икс элемент множества игрек">,
+"<икс есть элемент игрек">, "<игрек содержит икс в качестве элемента">, или "<икс является элементом игрек">
+($\mathsf{ZF}$ система аксиом Цермело-Френкля).
+
+\subsection{YYYY}
+$A = \left\{x  \mid \phi(x) \right\}$ - Множество $A$ состоит из всех таких элементов $x$, для
+которых истинно $\phi(x)$. Множество $A$ равно множеству, состоящему из всех таких элементов $x$, для которых истинно $\phi(x)$.
+
+\subsection{Связанные и свободные переменные}
+Переменная называется связанной, если она стоит под каким-либо квантором, $\forall$ или $\exists$,
+и называется свободной, если она не стоит под квантором.
+
+\begin{itemize}
+    \item $\coloneqq$ символ для определения обозначений.
+    \item $a \subseteq b \coloneqq \forall x (x \in a \rightarrow x \in b)$~\\
+    	\textbf{$\mathbf{a}$ содержится в $\mathbf{b}$} ~\\
+    	\textbf{$\mathbf{a}$ есть подмножество $\mathbf{b}$}
+    \item $a = b \coloneqq (a \subseteq b) \land (b \subseteq a)$
+    \item $a \subset b \coloneqq (a \subseteq b) \land (a \neq b)$ ~\\
+    	\textbf{$\mathbf{a}$ есть собственное подмножество $\mathbf{b}$}
+    \item $a \notin b \coloneqq \; \rceil(a \in b)$
+    \item $a \neq b \coloneqq \rceil(a = b)$
+    \item $R \coloneqq \left\{X \mid X \notin X \right\}$ называется регулярным.
+    \item $S \coloneqq \left\{X \mid X \in X \right\}$ называется сингулярным.
+\end{itemize}
+
+\begin{itemize}
+    \item $x \notin y$ - \textbf{Икс не элемент множества игрек}.
+\end{itemize}
+
+\begin{itemize}
+    \item Пара множеств ~\\
+	$\left\{a,b\right\} \coloneqq \left\{ x \mid x = a \lor x = b \right\}$
+    \item Одноточечное множество (синглетон) ~\\
+    	$\left\{a\right\} \coloneqq \left\{a, a \right\}$
+    \item Пересечение множеств $a$ и $b$ ~\\
+    	$a \cap b \coloneqq \left\{x \mid x \in a \land x \in b\right\}$
+    \item Объединение множеств $a$ и $b$ ~\\
+			$a \cup b \coloneqq \left\{x \mid x \in a \lor x \in b\right\}$
+		\item Разность множеств $a$ и $b$ ~\\
+			$a \setminus b \coloneqq \left\{x \mid x \in a \land x \notin b \right\}$
+\end{itemize}
+
+\section{Аксиомы}
+
+\begin{definition}[\textbf{Высказывание}] ~\\
+\end{definition}
+
+\end{document}
